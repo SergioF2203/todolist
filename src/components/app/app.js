@@ -4,6 +4,7 @@ import AppHeader from '../app-header';
 import SearchPanel from '../search-panel';
 import ToDoList from '../to-do-list';
 import ItemStatusFilter from '../item-status-filter';
+import AddItem from '../add-item';
 import './app.css';
 
 
@@ -43,6 +44,7 @@ export default class App extends Component {
                     items={this.state.todoData}
                     onDeleted={this.deleteItem}
                 />
+                <AddItem/>
             </div>
         )
     };
