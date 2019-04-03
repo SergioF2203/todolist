@@ -46,15 +46,24 @@ export default class App extends Component {
         };
 
         //add item in the array
-        this.setState(({todoData})=>{
+        this.setState(({todoData}) => {
             const newArray = [
                 ...todoData,
                 newItem
             ];
-            return{
+            return {
                 todoData: newArray
             }
         })
+    };
+
+    onToggleImportant = (id) => {
+        console.log('Toggle important', id);
+    };
+
+    onToggleDone = (id) => {
+        console.log('Toggle done', id);
+
     };
 
     render() {
@@ -68,6 +77,8 @@ export default class App extends Component {
                 < ToDoList
                     items={this.state.todoData}
                     onDeleted={this.deleteItem}
+                    onToggleImportant={this.onToggleImportant}
+                    onToggleDone={this.onToggleDone}
                 />
                 <AddItem addNewItem={this.addItem}/>
             </div>

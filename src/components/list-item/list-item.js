@@ -9,32 +9,37 @@ export default class ToDoListItem extends Component {
     //     };
     // };
 
-    state = {
-        done: false,
-        important: false
-    };
+    // state = {
+    //     done: false,
+    //     important: false
+    // };
 
-    onClickElement = () => {
-        this.setState(({done}) => {
-            return {
-                done: !done
-            }
-        });
-    };
-
-    changeStatusElement = () => {
-        this.setState((state) => {
-            return {
-                important: !state.important
-            }
-        });
-    };
+    // onClickElement = () => {
+    //     this.setState(({done}) => {
+    //         return {
+    //             done: !done
+    //         }
+    //     });
+    // };
+    //
+    // changeStatusElement = () => {
+    //     this.setState((state) => {
+    //         return {
+    //             important: !state.important
+    //         }
+    //     });
+    // };
 
     render() {
-        const {label, onDeleted} = this.props;
+        const {
+            label, onDeleted,
+            onToggleImportant,
+            onToggleDone, important,
+            done
+        } = this.props;
 
-        const {done} = this.state;
-        const {important} = this.state;
+        // const {done} = this.state;
+        // const {important} = this.state;
 
         let styleName = 'list-item';
 
@@ -50,13 +55,13 @@ export default class ToDoListItem extends Component {
             <span className={styleName}>
           <span
               className='list-item-label'
-              onClick={this.onClickElement}>
+              onClick={onToggleDone}>
               {label}
               </span>
 
             <button type='button'
                     className='btn btn-outline-success btn-sm float-right'
-                    onClick={this.changeStatusElement}>
+                    onClick={onToggleImportant}>
                 <i className='fa fa-exclamation'/>
             </button>
             <button type='button'
