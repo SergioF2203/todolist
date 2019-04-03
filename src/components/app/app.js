@@ -24,6 +24,7 @@ const App = () => {
             </div>
             < ToDoList
                 items={todoData}
+                onDeleted={(id)=>console.log('delete', id)}
             />
         </div>
     );
