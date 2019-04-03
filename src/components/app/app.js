@@ -9,6 +9,9 @@ import './app.css';
 
 
 export default class App extends Component {
+
+    maxID = 100;
+
     state = {
         todoData: [
             {label: 'Study React', id: 1},
@@ -32,6 +35,28 @@ export default class App extends Component {
         })
     };
 
+    addItem = (text) => {
+        console.log('added', text);
+
+        //generate id
+        const newItem = {
+            label: text,
+            important: false,
+            id: this.maxID++
+        };
+
+        //add item in the array
+        this.setState(({todoData})=>{
+            const newArray = [
+                ...todoData,
+                newItem
+            ];
+            return{
+                todoData: newArray
+            }
+        })
+    };
+
     render() {
         return (
             <div className='todo-app'>
@@ -44,7 +69,7 @@ export default class App extends Component {
                     items={this.state.todoData}
                     onDeleted={this.deleteItem}
                 />
-                <AddItem/>
+                <AddItem addNewItem={this.addItem}/>
             </div>
         )
     };
