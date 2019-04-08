@@ -9,8 +9,6 @@ const ToDoList = ({
                       onToggleImportant,
                       onToggleDone
                   }) => {
-
-
     const elements = items.map((item) => {
 
         const {id, ...otherProps} = item;

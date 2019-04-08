@@ -8,7 +8,7 @@ export default class AppHeader extends Component{
 
             <div className='app-header d-flex'>
                 <h1>ToDo List</h1>
-                <h2>{todo} to do more, {done}</h2>
+                <h2>{todo} more to do, done {done}</h2>
             </div>
         )
 

@@ -12,8 +12,8 @@ export default class App extends Component {
 
     maxID = 100;
 
-    createTodoItem=(label)=>{
-        return{
+    createTodoItem(label) {
+        return {
             label,
             important: false,
             done: false,
@@ -67,14 +67,43 @@ export default class App extends Component {
     };
 
     onToggleDone = (id) => {
-        console.log('Toggle done', id);
 
+        this.setState(({todoData}) => {
+
+            //1. update object
+            const idx = todoData.findIndex((el) => el.id === id);
+            const oldItem = todoData[idx];
+            const newItem = {
+                ...oldItem,
+                done: !oldItem.done
+            };
+
+            //2. construct new array
+            const before = todoData.slice(0, idx);
+            const after = todoData.slice(idx + 1);
+
+            const newArray = [
+                ...before,
+                newItem,
+                ...after
+            ];
+
+            return {
+                todoData: newArray
+            }
+
+        });
     };
 
     render() {
+
+        const doneCount = this.state.todoData
+            .filter((el) => el.done === true).length;
+        const todoCount = this.state.todoData.length - doneCount;
+
         return (
             <div className='todo-app'>
-                <AppHeader todo={1} done={3}/>
+                <AppHeader todo={todoCount} done={doneCount}/>
                 <div className='top-panel d-flex'>
                     < SearchPanel/>
                     < ItemStatusFilter/>
