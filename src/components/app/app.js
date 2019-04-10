@@ -44,7 +44,6 @@ export default class App extends Component {
         })
     };
 
-
     addItem = (text) => {
 
         //generate id
@@ -62,36 +61,42 @@ export default class App extends Component {
         })
     };
 
+    toggleProperty(array, id, property){
+        const idx = array.findIndex((el) => el.id === id);
+
+        const oldItem = array[idx];
+        const newItem = {
+            ...oldItem,
+            [property]: !oldItem[property]
+        };
+
+        //2. construct new array
+        const before = array.slice(0, idx);
+        const after = array.slice(idx + 1);
+
+
+        return  [
+            ...before,
+            newItem,
+            ...after
+        ];
+
+    }
+
     onToggleImportant = (id) => {
-        console.log('Toggle important', id);
+        this.setState(({todoData})=>{
+            return{
+                todoData: this.toggleProperty(todoData, id, 'important')
+            };
+        });
     };
 
     onToggleDone = (id) => {
 
         this.setState(({todoData}) => {
-
-            //1. update object
-            const idx = todoData.findIndex((el) => el.id === id);
-            const oldItem = todoData[idx];
-            const newItem = {
-                ...oldItem,
-                done: !oldItem.done
-            };
-
-            //2. construct new array
-            const before = todoData.slice(0, idx);
-            const after = todoData.slice(idx + 1);
-
-            const newArray = [
-                ...before,
-                newItem,
-                ...after
-            ];
-
             return {
-                todoData: newArray
-            }
-
+                todoData: this.toggleProperty(todoData, id, 'done')
+            };
         });
     };
 
