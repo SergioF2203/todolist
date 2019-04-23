@@ -38,9 +38,6 @@ export default class ToDoListItem extends Component {
             done
         } = this.props;
 
-        // const {done} = this.state;
-        // const {important} = this.state;
-
         let styleName = 'list-item';
 
         if (done) {
@@ -49,7 +46,6 @@ export default class ToDoListItem extends Component {
         if (important) {
             styleName += ' important';
         }
-
 
         return (
             <span className={styleName}>
